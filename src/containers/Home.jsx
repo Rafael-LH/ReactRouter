@@ -38,4 +38,6 @@ const mapStateToProps = (state) => {
     originals: state.originals,
   };
 };
+// el metodo connect recibe las propiedades (mapStateToProps) y los eventos / acciones (mapDispatchToProps)
+// y despues eso lo conectamos con nuestro componente
 export default connect(mapStateToProps, null)(Home);

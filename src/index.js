@@ -171,7 +171,7 @@ const initialState = {
   ],
 };
 
-// createStore() recibe dos parametros 1- reducer 2- estado inicial
+// createStore() recibe dos parametros 1-Reducer 2-Estado inicial
 const store = createStore(reducer, initialState);
 
 ReactDOM.render(
