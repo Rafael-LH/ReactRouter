@@ -21,8 +21,15 @@ const reducer = (state, action) => {
 
     case 'DELETE_FAVORITE':
       return {
-        ...state,
+        ...state, // JSON initialState
         myList: state.myList.filter(item => item.id !== action.payload), //el payload recibe in id
+      };
+      break;
+
+    case 'LOGIN_REQUEST':
+      return {
+        ...state, // JSON initialState
+        user: action.payload,
       };
       break;
 

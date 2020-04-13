@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import '@styles/Login.scss';
 import Twitter from '@images/twitter-icon.png';
 import GoogleIcon from '@images/google-icon.png';
+import { loginRequest } from '../actions';
 
-const Login = () => {
+const Login = (props) => {
   const [form, setForm] = useState({
     email: '',
+    user_name: '',
   });
-  const handleInput = (e) => {
+  const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -16,7 +19,10 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    props.loginRequest(form);
+    // history.push es un metodo que ya biene por defecto en las props de react y sirve como un location.href
+    //nos sirve para hacer redireccionamiento
+    props.history.push('/');
   };
   return (
     <section className='login'>
@@ -24,12 +30,20 @@ const Login = () => {
         <h2>Inicia sesión</h2>
         <form className='login__container--form' onSubmit={handleSubmit}>
           <input
+            type='text'
+            className='input w-100'
+            name='user_name'
+            id='user_name'
+            placeholder='User Name'
+            onChange={handleChange}
+          />
+          <input
             className='input w-100'
             type='text'
             name='email'
             id='email'
             placeholder='Correo'
-            onChange={handleInput}
+            onChange={handleChange}
           />
           <input
             className='input w-100'
@@ -72,4 +86,8 @@ const Login = () => {
     </section>
   );
 };
-export default Login;
+const mapDispatchToProps = {
+  loginRequest,
+};
+// mapStateToProps mapDispatchToProps
+export default connect(null, mapDispatchToProps)(Login);
