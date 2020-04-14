@@ -1,21 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerRequest } from '../actions';
 import '@styles/Register.scss';
 
-const Register = () => (
-  <section className='register'>
-    <section className='register__container'>
-      <h2>Regístrate</h2>
-      <form className='register__container--form'>
-        <input className='input w-100' type='text' placeholder='Nombre' />
-        <input className='input w-100' type='text' placeholder='Correo' />
-        <input className='input w-100' type='password' placeholder='Contraseña' />
-        <input type='button' className='button' value='Registrarme' />
-      </form>
-      <Link to='/login'>
+const Register = ({ registerRequest, history }) => {
+  const [form, setForm] = useState({
+    userName: '',
+    email: '',
+  });
+
+  const handleInput = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    registerRequest(form);
+    // history.push es un metodo que ya biene por defecto en las props de react y sirve como un location.href
+    //nos sirve para hacer redireccionamiento
+    history.push('/');
+  };
+  return (
+    <section className='register'>
+      <section className='register__container'>
+        <h2>Regístrate</h2>
+        <form className='register__container--form' onSubmit={handleSubmit}>
+          <input
+            className='input w-100'
+            type='text'
+            placeholder='Nombre de usuario'
+            id='userName'
+            name='userName'
+            onChange={handleInput}
+            required
+          />
+          <input
+            className='input w-100'
+            type='text'
+            placeholder='Correo'
+            id='email'
+            name='email'
+            onChange={handleInput}
+            required
+          />
+          <input
+            className='input w-100'
+            type='password'
+            placeholder='Contraseña'
+            required
+          />
+          <button type='submit' className='button'>Registrarme</button>
+        </form>
+        <Link to='/login'>
        Iniciar sesión
-      </Link>
+        </Link>
+      </section>
     </section>
-  </section>
-);
-export default Register;
+  );
+};
+const mapDispatchToProps = {
+  registerRequest,
+};
+export default connect(null, mapDispatchToProps)(Register);

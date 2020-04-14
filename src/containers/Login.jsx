@@ -11,7 +11,7 @@ const Login = (props) => {
     email: '',
     userName: '',
   });
-  const handleChange = (e) => {
+  const handleInput = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -34,8 +34,9 @@ const Login = (props) => {
             className='input w-100'
             name='userName'
             id='userName'
-            placeholder='User Name'
-            onChange={handleChange}
+            placeholder='Nombre de usuario'
+            onChange={handleInput}
+            required
           />
           <input
             className='input w-100'
@@ -43,7 +44,8 @@ const Login = (props) => {
             name='email'
             id='email'
             placeholder='Correo'
-            onChange={handleChange}
+            onChange={handleInput}
+            required
           />
           <input
             className='input w-100'
@@ -51,6 +53,7 @@ const Login = (props) => {
             name='password'
             id='password'
             placeholder='Contraseña'
+            required
           />
           <input
             type='submit'

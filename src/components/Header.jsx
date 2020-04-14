@@ -5,14 +5,13 @@ import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 import gravatar from '../utils/gravatar';
-import { logOut } from '../actions';
+import { logoutRequest } from '../actions';
 
-const Header = ({ user, logOut }) => {
+const Header = ({ user, logoutRequest }) => {
 
   const hasUser = Object.keys(user).length > 0;
-  const handleClick = (e) => {
-    logOut({});
-  };
+  const handleLogout = e => logoutRequest({});
+
   return (
     <header className='header'>
       <Link to='/'>
@@ -32,13 +31,17 @@ const Header = ({ user, logOut }) => {
         <ul>
           {
             !hasUser ? (
-              <li>
-                <Link to='/registro'>Registrar </Link>
-                <Link to='/login'>Iniciar Sesión </Link>
-              </li>
+              <>
+                <li>
+                  <Link to='/registro'>Registrar </Link>
+                </li>
+                <li>
+                  <Link to='/login'>Iniciar Sesión </Link>
+                </li>
+              </>
             ) : (
               <li>
-                <Link to='/' onClick={handleClick}> Cerrar Sesión </Link>
+                <Link to='/' onClick={handleLogout}> Cerrar Sesión </Link>
               </li>
             )}
         </ul>
@@ -54,6 +57,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  logOut,
+  logoutRequest,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
