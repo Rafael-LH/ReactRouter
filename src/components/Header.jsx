@@ -5,11 +5,14 @@ import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 import gravatar from '../utils/gravatar';
+import { logOut } from '../actions';
 
-const Header = ({ user }) => {
+const Header = ({ user, logOut }) => {
 
   const hasUser = Object.keys(user).length > 0;
-
+  const handleClick = (e) => {
+    logOut({});
+  };
   return (
     <header className='header'>
       <Link to='/'>
@@ -35,7 +38,7 @@ const Header = ({ user }) => {
               </li>
             ) : (
               <li>
-                <Link to='/'> Cerrar Sesión </Link>
+                <Link to='/' onClick={handleClick}> Cerrar Sesión </Link>
               </li>
             )}
         </ul>
@@ -49,4 +52,8 @@ const mapStateToProps = (state) => {
     user: state.user,
   };
 };
-export default connect(mapStateToProps, null)(Header);
+
+const mapDispatchToProps = {
+  logOut,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

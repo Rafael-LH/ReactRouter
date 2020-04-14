@@ -21,5 +21,9 @@ export const loginRequest = payload => ({
   payload,
 });
 
+export const logOut = payload => ({
+  type: 'LOG_OUT',
+  payload,
+});
 // otra forma de exportar
 // export { setFavorite, deleteFavorite };

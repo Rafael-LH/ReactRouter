@@ -33,6 +33,13 @@ const reducer = (state, action) => {
       };
       break;
 
+    case 'LOG_OUT':
+      return {
+        ...state, // JSON initialState
+        user: action.payload,
+      };
+      break;
+
     default:
       return state;
   }
