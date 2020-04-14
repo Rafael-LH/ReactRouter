@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
+import gravatar from '../utils/gravatar';
 
 const Header = ({ user }) => {
+
+  const hasUser = Object.keys(user).length > 0;
+
   return (
     <header className='header'>
       <Link to='/'>
@@ -13,14 +17,21 @@ const Header = ({ user }) => {
       </Link>
       <div className='header__menu'>
         <div className='header__menu--profile'>
-          <img src={userIcon} alt='' />
-          <p>{user.user_name ? user.user_name : 'Perfil'}</p>
+          {
+            hasUser ? (
+              <img src={gravatar(user.email)} alt={user.email} />
+            ) : (
+              <img src={userIcon} alt='Avatar' />
+            )
+          }
+          <p>{user.userName ? user.userName : 'Perfil'}</p>
         </div>
         <ul>
           {
-            !user.email ? (
+            !hasUser ? (
               <li>
-                <Link to='/login'> Cuenta </Link>
+                <Link to='/registro'>Registrar </Link>
+                <Link to='/login'>Iniciar Sesión </Link>
               </li>
             ) : (
               <li>

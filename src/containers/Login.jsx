@@ -9,7 +9,7 @@ import { loginRequest } from '../actions';
 const Login = (props) => {
   const [form, setForm] = useState({
     email: '',
-    user_name: '',
+    userName: '',
   });
   const handleChange = (e) => {
     setForm({
@@ -32,8 +32,8 @@ const Login = (props) => {
           <input
             type='text'
             className='input w-100'
-            name='user_name'
-            id='user_name'
+            name='userName'
+            id='userName'
             placeholder='User Name'
             onChange={handleChange}
           />
