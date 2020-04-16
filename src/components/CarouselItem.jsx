@@ -1,8 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setFavorite, deleteFavorite } from '../actions';
+
+//styles
 import '../assets/styles/components/CarouselItem.scss';
+
+// Icons
 import playIcon from '../assets/static/play-icon.png';
 import plusIcon from '../assets/static/plus-icon.png';
 import removeIcon from '../assets/static/remove-icon.png';
@@ -12,7 +17,7 @@ const CarouselItem = (props) => {
   const { id, cover, title, year, contentRating, duration, isMyList } = props;
   const handleSetFavorite = () => {
     props.setFavorite({
-      cover, title, year, contentRating, duration, id,
+      id, cover, title, year, contentRating, duration,
     });
   };
   const handleDeleteFavorite = (itemId) => {
@@ -23,7 +28,10 @@ const CarouselItem = (props) => {
       <img className='carousel-item__img' src={cover} alt={title} />
       <div className='carousel-item__details'>
         <div>
-          <img className='carousel-item__details--img' src={playIcon} alt='Play Icon' />
+          <Link to={`/player/${id}`}>
+            <img className='carousel-item__details--img' src={playIcon} alt='Play Icon' />
+          </Link>
+
           {
             !isMyList ? (
               <img

@@ -34,5 +34,10 @@ export const registerRequest = (payload) => {
     }
   );
 };
+
+export const playerId = payload => ({
+  type: 'PLAYER_ID',
+  payload,
+});
 // otra forma de exportar
 // export { setFavorite, deleteFavorite };

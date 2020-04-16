@@ -26,7 +26,7 @@ const Header = ({ user, logoutRequest }) => {
               <img src={userIcon} alt='Avatar' />
             )
           }
-          <p>{user.userName ? user.userName : 'Perfil'}</p>
+          <p>Perfil</p>
         </div>
         <ul>
           {
@@ -40,9 +40,12 @@ const Header = ({ user, logoutRequest }) => {
                 </li>
               </>
             ) : (
-              <li>
-                <Link to='/' onClick={handleLogout}> Cerrar Sesión </Link>
-              </li>
+              <>
+                <li>{user.userName}</li>
+                <li>
+                  <Link to='/' onClick={handleLogout}> Cerrar Sesión </Link>
+                </li>
+              </>
             )}
         </ul>
       </div>

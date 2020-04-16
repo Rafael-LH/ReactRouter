@@ -22,7 +22,7 @@ const reducer = (state, action) => {
     case 'DELETE_FAVORITE':
       return {
         ...state, // JSON initialState
-        myList: state.myList.filter(item => item.id !== action.payload), //el payload recibe in id
+        myList: state.myList.filter(item => item.id !== action.payload), //el payload recibe un id
       };
       break;
 
@@ -44,6 +44,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+      break;
+
+    case 'PLAYER_ID':
+      const [data] = state.trends.filter(item => item.id === parseInt(action.payload));
+      return {
+        ...state,
+        playing: data,
       };
       break;
 
