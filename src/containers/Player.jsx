@@ -13,15 +13,24 @@ const Player = (props) => {
   playerId(id);
 
   return (
-    <div className='player'>
-      <video controls>
-        <source src={playing.source} type='video/mp4' />
-      </video>
-      <div className='player-back'>
-        {/* la funcion goBack() esta por defecto / nativo en las props de react */}
-        <button type='button' onClick={() => props.history.goBack()}>Regresar</button>
+    (!playing) ? (
+      <div className='content-notfound-video'>
+        <h1>
+          Video no encontrado
+          <span>❌</span>
+        </h1>
       </div>
-    </div>
+    ) : (
+      <div className='player'>
+        <video controls>
+          <source src={playing.source} type='video/mp4' />
+        </video>
+        <div className='player-back'>
+          {/* la funcion goBack() esta por defecto / nativo en las props de react */}
+          <button type='button' onClick={() => props.history.goBack()}>Regresar</button>
+        </div>
+      </div>
+    )
   );
 };
 

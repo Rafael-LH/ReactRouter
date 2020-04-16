@@ -48,10 +48,12 @@ const reducer = (state, action) => {
       break;
 
     case 'PLAYER_ID':
-      const [data] = state.trends.filter(item => item.id === parseInt(action.payload));
       return {
         ...state,
-        playing: data,
+        // action.payload es un id string el cual lo tenemos que convertir a numerico para que no nos marque error
+        playing: state.myList.find(item => item.id === parseInt(action.payload, 10)) || // si lo hago con parseInt le tengo que pasar un segundo parametro que es limite de digitos
+                 state.trends.find(item => item.id === Number(action.payload)) ||
+                 state.originals.find(item => item.id === Number(action.payload)),
       };
       break;
 
