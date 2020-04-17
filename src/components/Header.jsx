@@ -1,19 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 import gravatar from '../utils/gravatar';
 import { logoutRequest } from '../actions';
 
-const Header = ({ user, logoutRequest }) => {
+const Header = ({ user, logoutRequest, isLogin, isRegister }) => {
 
   const hasUser = Object.keys(user).length > 0;
   const handleLogout = e => logoutRequest({});
 
+  // el primer parametro es la clase primcipal que tendra mi componente y el segundo parametro que es un objeto son las
+  // clases que te van a estar llegando por props
+  const headerClass = classNames('header', {
+    isLogin,
+    isRegister,
+  });
+
   return (
-    <header className='header'>
+    <header className={headerClass}>
       <Link to='/'>
         <img className='header__img' src={logo} alt='Platzi Video' />
       </Link>

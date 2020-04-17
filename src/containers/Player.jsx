@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { playerId } from '../actions';
 import '@styles/Player.scss';
+import NotFound from './NotFound';
 
 const Player = (props) => {
 
@@ -14,12 +15,7 @@ const Player = (props) => {
 
   return (
     (!playing) ? (
-      <div className='content-notfound-video'>
-        <h1>
-          Video no encontrado
-          <span>❌</span>
-        </h1>
-      </div>
+      <NotFound />
     ) : (
       <div className='player'>
         <video controls>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux'; //traemos compose de redux para hacer debbug
 import reducer from './reducers';
 import App from './routes/App';
 
@@ -171,8 +171,12 @@ const initialState = {
   ],
 };
 
+// esto es para debuggear en el navegador
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // createStore() recibe dos parametros 1-Reducer 2-Estado inicial
-const store = createStore(reducer, initialState);
+// el tercer parametro es opcional y es para hacer debbug en el navegador
+const store = createStore(reducer, initialState, composeEnhancers());
 
 ReactDOM.render(
   <Provider store={store}>
