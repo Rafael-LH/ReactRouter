@@ -57,6 +57,16 @@ const reducer = (state, action) => {
       };
       break;
 
+    case 'SEARCH_REQUEST':
+      let findSearch = {};
+      findSearch = action.payload !== '' ? state.trends.filter(item => item.title.indexOf(action.payload) > -1) : {};
+      findSearch = (Object.keys(findSearch).length <= 0 && action.payload !== '') ? state.originals.filter(item => item.title.indexOf(action.payload) > -1) : findSearch;
+
+      return {
+        ...state,
+        search: findSearch,
+      };
+      break;
     default:
       return state;
   }

@@ -39,5 +39,11 @@ export const playerId = payload => ({
   type: 'PLAYER_ID',
   payload,
 });
+
+export const searchRequest = payload => ({
+  type: 'SEARCH_REQUEST',
+  payload,
+});
+
 // otra forma de exportar
 // export { setFavorite, deleteFavorite };
